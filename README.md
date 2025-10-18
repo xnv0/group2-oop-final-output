@@ -54,8 +54,3 @@ A comprehensive Java-based educational platform featuring flashcard management, 
 - **Data Backup**: Simulate system backup functionality
 - **System Overview**: Monitor overall system statistics
 
----
-
-## 🏗️ System Architecture
-
-The application follows Object-Oriented Programming principles with the following class hierarchy:
