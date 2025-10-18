@@ -38,3 +38,61 @@ A comprehensive Java-based educational platform featuring flashcard management, 
 - **Data Backup**: Simulate system backup functionality
 - **System Overview**: Monitor overall system statistics
 
+## 🔐 Login Credentials
+
+### Sample User Accounts
+
+The system comes preloaded with sample accounts for testing. Use these credentials to explore different user roles:
+
+#### 👨‍🎓 Student Accounts
+| Username | Password | Description |
+|----------|----------|-------------|
+| `student01` | `password` | Juan Dela Cruz - Computer Science student with sample quiz history |
+| `student02` | `pass123` | Maria Santos - Information Technology student |
+
+#### 👨‍🏫 Tutor Accounts
+| Username | Password | Expertise |
+|----------|----------|-----------|
+| `tutor01` | `tutorpass` | Prof. Santos - Software Engineering specialist |
+| `tutor02` | `coachpw` | Coach Reyes - Cybersecurity specialist |
+
+#### 👨‍💼 Admin Account
+| Username | Password | Access Level |
+|----------|----------|--------------|
+| `admin` | `admin` | Super Administrator - Full system access |
+
+### Quick Start Guide
+
+1. **For Students**: 
+   - Login with `student01` / `password`
+   - Select a course, review flashcards, and take practice quizzes
+
+2. **For Tutors**: 
+   - Login with `tutor01` / `tutorpass`
+   - Create, edit, or delete flashcards to manage content
+
+3. **For Admins**: 
+   - Login with `admin` / `admin`
+   - View all users and perform system backup operations
+
+### Security Note
+
+⚠️ **These are sample credentials for demonstration purposes only.** 
+
+In a production environment:
+- All passwords should be hashed and salted
+- Users should be required to change default passwords
+- Implement password complexity requirements
+- Add account lockout mechanisms after failed attempts
+- Store credentials securely in a database
+
+---
+
+### User Roles & Permissions
+
+| Role | Permissions |
+|------|-------------|
+| **Student** | View flashcards, take quizzes, view performance analytics, get personalized recommendations |
+| **Tutor** | All student permissions + Create/Edit/Delete flashcards, manage content |
+| **Admin** | System administration, user management, data backup, view all users |
+
