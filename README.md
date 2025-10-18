@@ -6,26 +6,24 @@
 
 A comprehensive Java-based educational platform featuring flashcard management, adaptive quizzing, and personalized learning recommendations. Built with Object-Oriented Programming principles for the 2090-6OOP (NW-201) course at Holy Angel University.
 
+---
+
 ## 🎯 Overview
 
 **Hiraya STS** (Smart Tutoring System) is an interactive learning platform designed to help students master various computer science topics through flashcards and adaptive quizzes. The system supports multiple user roles (Student, Tutor, Admin) and provides personalized learning experiences based on performance tracking.
 
-## 👥 Contributors
+## 🖥 HOW TO RUN?
+1. **Download the ZIP File in Github**:
+2. **Run HirayaSTS.java**: 
+   - Preferably use an IDE like VS Code to run it.
+   - If it won't run, use cmd to run it:
+     javac HirayaSTS.java classes\*.java
+     java HirayaSTS
 
-- **Abrazado, Jin Gaila B.**
-- **Bautista, Mark Anthony A.** (@MrkHammy)
-- **Costigan, Jennilyn Y.**
-- **Feliciano, Angelo Iñigo D.** (@xnv0)
-
-## 📸 Sample Output
-### Screenshot 1
-![Screenshot 1](readme_screenshots/screenshot1.png)
-
-### Screenshot 2
-![Screenshot 2](readme_screenshots/screenshot2.png)
-
----
-
+3. **If the program successfuly ran, it will prompt you with a GUI pop-up**: 
+   - Login with the log-in credentials below
+   - Choose between student, tutor, or admin
+   
 ## 🔐 Login Credentials
 
 ### Sample User Accounts
@@ -48,6 +46,23 @@ The system comes preloaded with sample accounts for testing. Use these credentia
 | Username | Password | Access Level |
 |----------|----------|--------------|
 | `admin` | `admin` | Super Administrator - Full system access |
+## 👥 Contributors
+
+- **Abrazado, Jin Gaila B.**
+- **Bautista, Mark Anthony A.** (@MrkHammy)
+- **Costigan, Jennilyn Y.**
+- **Feliciano, Angelo Iñigo D.** (@xnv0)
+
+## 📸 Sample Output
+### Screenshot 1
+![Screenshot 1](readme_screenshots/screenshot1.png)
+
+### Screenshot 2
+![Screenshot 2](readme_screenshots/screenshot2.png)
+
+---
+
+
 
 ---
 
