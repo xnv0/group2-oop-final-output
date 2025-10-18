@@ -393,8 +393,24 @@ public class HirayaSTSImplementation {
     // Helper methods for custom dialogs with images
     private ImageIcon createResizedIcon(String imagePath, int maxWidth, int maxHeight) {
         try {
-            ImageIcon originalIcon = new ImageIcon(imagePath);
+            // Try to load as resource first (for when running from JAR or classes directory)
+            java.net.URL imageURL = getClass().getClassLoader().getResource(imagePath);
+            ImageIcon originalIcon;
+            
+            if (imageURL != null) {
+                originalIcon = new ImageIcon(imageURL);
+            } else {
+                // Fallback to file path (for direct file access)
+                originalIcon = new ImageIcon(imagePath);
+            }
+            
             java.awt.Image img = originalIcon.getImage();
+            
+            // Check if image was loaded successfully
+            if (img.getWidth(null) <= 0 || img.getHeight(null) <= 0) {
+                System.err.println("Failed to load image: " + imagePath);
+                return null;
+            }
             
             // Calculate scaling to maintain aspect ratio
             int originalWidth = img.getWidth(null);
@@ -410,6 +426,8 @@ public class HirayaSTSImplementation {
             java.awt.Image scaledImg = img.getScaledInstance(newWidth, newHeight, java.awt.Image.SCALE_SMOOTH);
             return new ImageIcon(scaledImg);
         } catch (Exception e) {
+            System.err.println("Error loading image: " + imagePath);
+            e.printStackTrace();
             return null;
         }
     }
