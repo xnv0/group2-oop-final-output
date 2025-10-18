@@ -1,0 +1,42 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "HirayaSTS",
+            "request": "launch",
+            "mainClass": "HirayaSTS",
+            "projectName": "group2-oop-final-output_246f05c0"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "HirayaSTS",
+            "request": "launch",
+            "mainClass": "HirayaSTS",
+            "projectName": "EVERYTHING FIXED_7f1737cd"
+        },
+        {
+            "type": "java",
+            "name": "TestGUI",
+            "request": "launch",
+            "mainClass": "TestGUI",
+            "projectName": "EVERYTHING FIXED_7f1737cd"
+        },
+        {
+            "type": "java",
+            "name": "HirayaSTS(1)",
+            "request": "launch",
+            "mainClass": "classes.HirayaSTS",
+            "projectName": "EVERYTHING FIXED_7f1737cd"
+        }
+    ]
+}
