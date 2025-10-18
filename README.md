@@ -12,7 +12,7 @@ A comprehensive Java-based educational platform featuring flashcard management, 
 
 **Hiraya STS** (Smart Tutoring System) is an interactive learning platform designed to help students master various computer science topics through flashcards and adaptive quizzes. The system supports multiple user roles (Student, Tutor, Admin) and provides personalized learning experiences based on performance tracking.
 
-## 🖥 HOW TO RUN?
+## 🖥 How to Run?
 1. **Download the ZIP File in Github**:
 2. **Run HirayaSTS.java**: 
    - Preferably use an IDE like VS Code to run it.
