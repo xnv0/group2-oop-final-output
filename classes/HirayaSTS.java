@@ -169,8 +169,73 @@ public class HirayaSTS {
 
     // Adders and finders
     public void addFlashcard(Flashcard f) {
+        if (f == null) {
+            // Create new flashcard through GUI
+            createNewFlashcard();
+            return;
+        }
+        
         if (flashcardCount < flashcards.length) {
             flashcards[flashcardCount++] = f;
+        } else {
+            JOptionPane.showMessageDialog(null, "Flashcard storage full.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    // Method to create a new flashcard through GUI
+    private void createNewFlashcard() {
+        ImageIcon createFlashcardIcon = createResizedIcon("images/tutor-dashboard.png", 300, 200);
+        
+        // Get term
+        String term = showCustomInputDialog("Enter the Term:", "Create Flashcard", createFlashcardIcon);
+        if (term == null || term.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Flashcard creation cancelled.", "Cancelled", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        
+        // Get definition
+        String definition = showCustomInputDialog("Enter the Definition:", "Create Flashcard", createFlashcardIcon);
+        if (definition == null || definition.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Flashcard creation cancelled.", "Cancelled", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        
+        // Show available topics for selection
+        StringBuilder sb = new StringBuilder();
+        sb.append("Select a Topic:\n\n");
+        for (int i = 0; i < TOPICS.length; i++) {
+            sb.append((i + 1)).append(". ").append(TOPICS[i]).append("\n");
+        }
+        sb.append("\nEnter the number of the topic, or type a custom topic:");
+        
+        String topicChoice = showCustomInputDialog(sb.toString(), "Create Flashcard", createFlashcardIcon);
+        if (topicChoice == null || topicChoice.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Flashcard creation cancelled.", "Cancelled", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        
+        String topic;
+        try {
+            int topicIndex = Integer.parseInt(topicChoice.trim()) - 1;
+            if (topicIndex >= 0 && topicIndex < TOPICS.length) {
+                topic = TOPICS[topicIndex];
+            } else {
+                topic = topicChoice.trim();
+            }
+        } catch (NumberFormatException e) {
+            topic = topicChoice.trim();
+        }
+        
+        // Create and add the flashcard
+        Flashcard newFlashcard = new Flashcard(term.trim(), definition.trim(), topic);
+        if (flashcardCount < flashcards.length) {
+            flashcards[flashcardCount++] = newFlashcard;
+            JOptionPane.showMessageDialog(null, 
+                "Flashcard created successfully!\n\n" +
+                "Term: " + term.trim() + "\n" +
+                "Definition: " + definition.trim() + "\n" +
+                "Topic: " + topic, 
+                "Success", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(null, "Flashcard storage full.", "Error", JOptionPane.ERROR_MESSAGE);
         }
