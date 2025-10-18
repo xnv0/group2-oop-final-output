@@ -700,7 +700,18 @@ private void tutorDashboard(Tutor t) {
 
         switch (choice.trim()) {
             case "1":
-                addFlashcard(null);
+                String term = JOptionPane.showInputDialog(null, "CREATE FLASHCARD\n\nEnter Term:", "Create Flashcard", JOptionPane.QUESTION_MESSAGE);
+                if (term == null) break;
+                
+                String definition = JOptionPane.showInputDialog(null, "Enter Definition:", "Create Flashcard", JOptionPane.QUESTION_MESSAGE);
+                if (definition == null) break;
+                
+                String topic = JOptionPane.showInputDialog(null, "Enter Topic:", "Create Flashcard", JOptionPane.QUESTION_MESSAGE);
+                if (topic == null) break;
+                
+                Flashcard nf = t.createFlashcard(term.trim(), definition.trim(), topic.trim());
+                addFlashcard(nf);
+                JOptionPane.showMessageDialog(null, "Flashcard successfully added under " + topic.trim() + "!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 break;
             case "2":
                 editFlashcard(); // exists
