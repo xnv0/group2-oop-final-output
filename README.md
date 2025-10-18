@@ -17,8 +17,8 @@ A comprehensive Java-based educational platform featuring flashcard management, 
 2. **Run HirayaSTS.java**: 
    - Preferably use an IDE like VS Code to run it.
    - If it won't run, use cmd to run it:
-     javac HirayaSTS.java classes\*.java
-     java HirayaSTS
+   - javac HirayaSTS.java classes\*.java
+   - java HirayaSTS
 
 3. **If the program successfuly ran, it will prompt you with a GUI pop-up**: 
    - Login with the log-in credentials below
