@@ -6,22 +6,6 @@
 
 A comprehensive Java-based educational platform featuring flashcard management, adaptive quizzing, and personalized learning recommendations. Built with Object-Oriented Programming principles for the 2090-6OOP (NW-201) course.
 
----
-
-## 📋 Table of Contents
-- [Overview](#overview)
-- [Features](#features)
-- [System Architecture](#system-architecture)
-- [Installation](#installation)
-- [Usage](#usage)
-- [User Roles](#user-roles)
-- [Course Topics](#course-topics)
-- [Technical Details](#technical-details)
-- [Contributors](#contributors)
-- [License](#license)
-
----
-
 ## 🎯 Overview
 
 **Hiraya STS** (Smart Tutoring System) is an interactive learning platform designed to help students master various computer science topics through flashcards and adaptive quizzes. The system supports multiple user roles (Student, Tutor, Admin) and provides personalized learning experiences based on performance tracking.
