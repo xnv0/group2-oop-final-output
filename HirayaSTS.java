@@ -1,7 +1,19 @@
-import java.util.Scanner;
+// Members: 
+// Abrazado, Jin Gaila B.
+// Bautista, Mark Anthony A.
+// Costigan, Jennilyn Y.
+// Feliciano, Angelo Iñigo D.
+// Section/Course: 
+// NW-201 / 6-OOP
+
+import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import java.awt.BorderLayout;
 
 public class HirayaSTS {
-    // ---------- System-wide constants ----------
+    // System-wide constants
     private static final String[] AVAILABLE_COURSES = {
         "Computer Science Fundamentals",
         "Cybersecurity Basics",
@@ -14,28 +26,28 @@ public class HirayaSTS {
         "Computer Science Fundamentals",
         "Data Structures and Algorithms"
     };
-    // ---------- Storage arrays ----------
+    // Storage arrays 
     private Flashcard[] flashcards;
     private int flashcardCount;
     private User[] users;
     private int userCount;
+    
+    // Course selection tracking
+    private String selectedCourse;
 
-    private Scanner scanner;
-
-    // Constructor initializes arrays and sample data
+    // Constructor that initializes arrays and sample data
     public HirayaSTS() {
         flashcards = new Flashcard[200];
         flashcardCount = 0;
         users = new User[50];
         userCount = 0;
-        scanner = new Scanner(System.in);
+        selectedCourse = null;
 
-        populateSampleDataVariantA(); // primary sample dataset
-        // Additional dataset can be loaded by calling populateSampleDataVariantB()
+        userFlashcardDatabase(); 
     }
 
-    // Sample data variant A (more than one user and many flashcards)
-    private void populateSampleDataVariantA() {
+    // Contains all of the users and flashcards
+    private void userFlashcardDatabase() {
         // Add Students
         addUser(new Student(1, "Juan Dela Cruz", "student01", "password", "juan@student.edu", "Computer Science", "2001-05-12"));
         addUser(new Student(2, "Maria Santos", "student02", "pass123", "maria@student.edu", "Information Technology", "2002-10-01"));
@@ -47,7 +59,7 @@ public class HirayaSTS {
         // Add Admin
         addUser(new Admin(99, "Admin", "admin", "admin", "super"));
 
-        // Add Flashcards (multiple topics)
+        // Add Flashcards (Various Topics)
         addFlashcard(new Flashcard("Exception Handling", "A mechanism to handle runtime errors and maintain normal application flow.", "Object-Oriented Programming"));
         addFlashcard(new Flashcard("Polymorphism", "The ability of an object to take on many forms.", "Object-Oriented Programming"));
         addFlashcard(new Flashcard("Array of Objects", "A collection of objects stored in a single array.", "Object-Oriented Programming"));
@@ -60,11 +72,86 @@ public class HirayaSTS {
         addFlashcard(new Flashcard("Abstraction", "Hiding implementation details while exposing essential features.", "Object-Oriented Programming"));
         addFlashcard(new Flashcard("Encapsulation", "Bundling data and methods and restricting direct access.", "Object-Oriented Programming"));
 
-        // Initialize some performance tracking for students with mock attempts
+        // Add Flashcards (OOP)
+        addFlashcard(new Flashcard("Inheritance", "A mechanism where one class acquires the properties of another.", "Object-Oriented Programming"));
+        addFlashcard(new Flashcard("Class", "A blueprint for creating objects.", "Object-Oriented Programming"));
+        addFlashcard(new Flashcard("Object", "An instance of a class.", "Object-Oriented Programming"));
+        addFlashcard(new Flashcard("Constructor", "A special method used to initialize objects.", "Object-Oriented Programming"));
+        addFlashcard(new Flashcard("Method Overloading", "Defining multiple methods with the same name but different parameters.", "Object-Oriented Programming"));
+        addFlashcard(new Flashcard("Method Overriding", "Redefining a superclass method in a subclass.", "Object-Oriented Programming"));
+        addFlashcard(new Flashcard("Interface", "A reference type in Java, similar to a class, that can contain only constants, method signatures, default methods, static methods, and nested types.", "Object-Oriented Programming"));
+        addFlashcard(new Flashcard("Abstract Class", "A class that cannot be instantiated and may contain abstract methods.", "Object-Oriented Programming"));
+        addFlashcard(new Flashcard("Final Keyword", "Used to restrict the user; can be applied to variables, methods, and classes.", "Object-Oriented Programming"));
+        addFlashcard(new Flashcard("Static Keyword", "Indicates that a member belongs to the class, rather than to any instance.", "Object-Oriented Programming"));
+        addFlashcard(new Flashcard("Super Keyword", "Refers to the immediate parent class object.", "Object-Oriented Programming"));
+        addFlashcard(new Flashcard("This Keyword", "Refers to the current object in a method or constructor.", "Object-Oriented Programming"));
+
+        // Add Flashcards (CyberSec Basics)
+        addFlashcard(new Flashcard("Phishing", "A fraudulent attempt to obtain sensitive information by disguising as a trustworthy entity.", "Cybersecurity Basics"));
+        addFlashcard(new Flashcard("Malware", "Software designed to disrupt, damage, or gain unauthorized access to a computer system.", "Cybersecurity Basics"));
+        addFlashcard(new Flashcard("Encryption", "The process of converting information into code to prevent unauthorized access.", "Cybersecurity Basics"));
+        addFlashcard(new Flashcard("Authentication", "The process of verifying the identity of a user or process.", "Cybersecurity Basics"));
+        addFlashcard(new Flashcard("Authorization", "The process of giving someone permission to do or have something.", "Cybersecurity Basics"));
+        addFlashcard(new Flashcard("Brute Force Attack", "A trial-and-error method used to decode encrypted data such as passwords.", "Cybersecurity Basics"));
+        addFlashcard(new Flashcard("Two-Factor Authentication", "A security process in which the user provides two different authentication factors.", "Cybersecurity Basics"));
+        addFlashcard(new Flashcard("Zero-Day Vulnerability", "A software security flaw that is unknown to those who should be interested in its mitigation.", "Cybersecurity Basics"));
+        addFlashcard(new Flashcard("Denial of Service", "An attack meant to shut down a machine or network, making it inaccessible to users.", "Cybersecurity Basics"));
+        addFlashcard(new Flashcard("Man-in-the-Middle Attack", "An attack where the attacker secretly intercepts and relays messages between two parties.", "Cybersecurity Basics"));
+        addFlashcard(new Flashcard("Social Engineering", "Manipulating people into giving up confidential information.", "Cybersecurity Basics"));
+
+        // Add Flashcards (ComSci Fundamentals)
+        addFlashcard(new Flashcard("Algorithm", "A step-by-step procedure for solving a problem.", "Computer Science Fundamentals"));
+        addFlashcard(new Flashcard("Variable", "A storage location paired with an associated symbolic name.", "Computer Science Fundamentals"));
+        addFlashcard(new Flashcard("Constant", "A value that cannot be altered by the program during normal execution.", "Computer Science Fundamentals"));
+        addFlashcard(new Flashcard("Data Type", "An attribute of data which tells the compiler or interpreter how the programmer intends to use the data.", "Computer Science Fundamentals"));
+        addFlashcard(new Flashcard("Compiler", "A program that translates source code into executable code.", "Computer Science Fundamentals"));
+        addFlashcard(new Flashcard("Interpreter", "A program that executes instructions written in a programming language.", "Computer Science Fundamentals"));
+        addFlashcard(new Flashcard("Recursion", "The process in which a function calls itself directly or indirectly.", "Computer Science Fundamentals"));
+        addFlashcard(new Flashcard("Iteration", "The repetition of a process in a computer program.", "Computer Science Fundamentals"));
+        addFlashcard(new Flashcard("Boolean", "A data type that has one of two possible values (true or false).", "Computer Science Fundamentals"));
+        addFlashcard(new Flashcard("Array", "A collection of elements identified by index or key.", "Computer Science Fundamentals"));
+        addFlashcard(new Flashcard("Function", "A block of code that performs a specific task.", "Computer Science Fundamentals"));
+        addFlashcard(new Flashcard("Parameter", "A variable used to pass information between functions or procedures.", "Computer Science Fundamentals"));
+        addFlashcard(new Flashcard("Return Value", "The value that a function returns to the calling function.", "Computer Science Fundamentals"));
+
+        // Add Flashcards (DSAL)
+        addFlashcard(new Flashcard("Queue", "A FIFO (First-In-First-Out) data structure.", "Data Structures and Algorithms"));
+        addFlashcard(new Flashcard("Tree", "A hierarchical data structure with a root value and subtrees of children.", "Data Structures and Algorithms"));
+        addFlashcard(new Flashcard("Binary Tree", "A tree data structure in which each node has at most two children.", "Data Structures and Algorithms"));
+        addFlashcard(new Flashcard("Graph", "A collection of nodes connected by edges.", "Data Structures and Algorithms"));
+        addFlashcard(new Flashcard("Hash Table", "A data structure that implements an associative array, a structure that can map keys to values.", "Data Structures and Algorithms"));
+        addFlashcard(new Flashcard("Bubble Sort", "A simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order.", "Data Structures and Algorithms"));
+        addFlashcard(new Flashcard("Merge Sort", "A divide and conquer algorithm that was invented by John von Neumann in 1945.", "Data Structures and Algorithms"));
+        addFlashcard(new Flashcard("Quick Sort", "An efficient sorting algorithm, serving as a systematic method for placing the elements of an array in order.", "Data Structures and Algorithms"));
+        addFlashcard(new Flashcard("Depth-First Search", "An algorithm for traversing or searching tree or graph data structures.", "Data Structures and Algorithms"));
+        addFlashcard(new Flashcard("Breadth-First Search", "An algorithm for searching a tree or graph data structures, starting at the root and exploring all neighbors at the present depth prior to moving on to nodes at the next depth level.", "Data Structures and Algorithms"));
+        addFlashcard(new Flashcard("Priority Queue", "An abstract data type similar to a regular queue or stack data structure in which each element has a priority associated with it.", "Data Structures and Algorithms"));
+        addFlashcard(new Flashcard("AVL Tree", "A self-balancing binary search tree.", "Data Structures and Algorithms"));
+        addFlashcard(new Flashcard("Dijkstra's Algorithm", "An algorithm for finding the shortest paths between nodes in a graph.", "Data Structures and Algorithms"));
+        addFlashcard(new Flashcard("Greedy Algorithm", "An algorithmic paradigm that follows the problem-solving heuristic of making the locally optimal choice at each stage.", "Data Structures and Algorithms"));
+        addFlashcard(new Flashcard("Dynamic Programming", "A method for solving complex problems by breaking them down into simpler subproblems.", "Data Structures and Algorithms"));
+        addFlashcard(new Flashcard("Recursion Tree", "A tree representation of the recursive calls made by an algorithm.", "Data Structures and Algorithms"));
+        addFlashcard(new Flashcard("Hash Collision", "When two different keys hash to the same index in a hash table.", "Data Structures and Algorithms"));
+        addFlashcard(new Flashcard("Adjacency Matrix", "A 2D array used to represent a finite graph.", "Data Structures and Algorithms"));
+        addFlashcard(new Flashcard("Adjacency List", "A collection of lists or arrays used to represent a finite graph.", "Data Structures and Algorithms"));
+        addFlashcard(new Flashcard("Minimum Spanning Tree", "A subset of the edges of a connected, edge-weighted undirected graph that connects all the vertices together, without any cycles and with the minimum possible total edge weight.", "Data Structures and Algorithms"));
+        addFlashcard(new Flashcard("Kruskal's Algorithm", "An algorithm for finding a minimum spanning tree for a connected weighted graph.", "Data Structures and Algorithms"));
+        addFlashcard(new Flashcard("Prim's Algorithm", "An algorithm that finds a minimum spanning tree for a weighted undirected graph.", "Data Structures and Algorithms"));
+        addFlashcard(new Flashcard("Binary Search Tree", "A node-based binary tree data structure which has the following properties: the left subtree of a node contains only nodes with keys lesser than the node’s key, the right subtree only nodes with keys greater.", "Data Structures and Algorithms"));
+        addFlashcard(new Flashcard("Trie", "A tree-like data structure used for efficient retrieval of a key in a large dataset of strings.", "Data Structures and Algorithms"));
+        addFlashcard(new Flashcard("Heap Sort", "A comparison-based sorting technique based on a binary heap data structure.", "Data Structures and Algorithms"));
+        addFlashcard(new Flashcard("Selection Sort", "A simple sorting algorithm that divides the input list into two parts: the sublist of items already sorted, and the sublist of items remaining to be sorted.", "Data Structures and Algorithms"));
+        addFlashcard(new Flashcard("Insertion Sort", "A simple sorting algorithm that builds the final sorted array one item at a time.", "Data Structures and Algorithms"));
+        addFlashcard(new Flashcard("Counting Sort", "An integer sorting algorithm that operates by counting the number of objects that possess distinct key values.", "Data Structures and Algorithms"));
+        addFlashcard(new Flashcard("Radix Sort", "A non-comparative integer sorting algorithm that sorts data with integer keys by grouping keys by the individual digits.", "Data Structures and Algorithms"));
+        addFlashcard(new Flashcard("Topological Sort", "A linear ordering of vertices of a directed acyclic graph.", "Data Structures and Algorithms"));
+        addFlashcard(new Flashcard("DFS", "Depth-First Search, an algorithm for traversing or searching tree or graph data structures.", "Data Structures and Algorithms"));
+        addFlashcard(new Flashcard("BFS", "Breadth-First Search, an algorithm for searching a tree or graph data structures.", "Data Structures and Algorithms"));
+
+        // Initializes performance tracking for students with practice quiz attempts
         User u1 = findUserByUsername("student01");
         if (u1 instanceof Student) {
             Student s = (Student) u1;
-            // record some mock attempts (topic indexes correspond to TOPICS)
             s.recordResult("Object-Oriented Programming", true);
             s.recordResult("Object-Oriented Programming", false);
             s.recordResult("Data Structures and Algorithms", false);
@@ -73,36 +160,12 @@ public class HirayaSTS {
         }
     }
 
-    // An alternative dataset (variant B) with at least 2 examples for each option
-    // If you want to run variant B instead, call populateSampleDataVariantB() from constructor.
-    private void populateSampleDataVariantB() {
-        // Clear current arrays
-        flashcards = new Flashcard[200];
-        flashcardCount = 0;
-        users = new User[50];
-        userCount = 0;
-
-        addUser(new Student(3, "Andres Bonifacio", "student03", "abc", "andres@school.edu", "Computer Science", "2000-12-30"));
-        addUser(new Student(4, "Jose Rizal", "student04", "xyz", "jose@school.edu", "IT", "1999-06-19"));
-
-        addUser(new Tutor(21, "Ma'am Cruz", "tutor03", "pw3", "Education"));
-        addUser(new Tutor(22, "Sir Lopez", "tutor04", "pw4", "Algorithms"));
-
-        addUser(new Admin(100, "SuperAdmin", "root", "toor", "root"));
-
-        addFlashcard(new Flashcard("Binary Search", "Search algorithm working on sorted arrays by dividing search interval.", "Data Structures and Algorithms"));
-        addFlashcard(new Flashcard("Sandwich Sec", "Not a real concept (distractor).", "Cybersecurity Basics"));
-        // ... add more to have at least two per topic
-        addFlashcard(new Flashcard("OOP - Interface", "A contract that classes can implement.", "Object-Oriented Programming"));
-        addFlashcard(new Flashcard("OOP - Abstract Class", "A partially implemented class to be extended.", "Object-Oriented Programming"));
-    }
-
-    // ---------- Adders and finders ----------
+    // Adders and finders
     public void addFlashcard(Flashcard f) {
         if (flashcardCount < flashcards.length) {
             flashcards[flashcardCount++] = f;
         } else {
-            System.out.println("Flashcard storage full.");
+            JOptionPane.showMessageDialog(null, "Flashcard storage full.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -110,22 +173,35 @@ public class HirayaSTS {
         if (userCount < users.length) {
             users[userCount++] = u;
         } else {
-            System.out.println("User storage full.");
+            JOptionPane.showMessageDialog(null, "User storage full.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     private User findUserByUsername(String username) {
+        System.out.println("DEBUG: Looking for username: '" + username + "'");
+        System.out.println("DEBUG: Total users in system: " + userCount);
         for (int i = 0; i < userCount; i++) {
-            if (users[i].getUsername().equals(username)) return users[i];
+            System.out.println("DEBUG: User " + i + " - Username: '" + users[i].getUsername() + "', Role: " + users[i].getRoleName());
+            if (users[i].getUsername().equals(username)) {
+                System.out.println("DEBUG: Found matching user!");
+                return users[i];
+            }
         }
+        System.out.println("DEBUG: No matching user found");
         return null;
     }
 
-    // ---------- Flashcard review mode ----------
+    // Flashcard review mode
     private void flashcardsMode() {
-        System.out.println("\nFLASHCARDS MODE - REVIEW\n");
-        if (flashcardCount == 0) {
-            System.out.println("No flashcards available.");
+        // Get filtered flashcards based on selected course
+        Flashcard[] filteredCards = getFilteredFlashcards();
+        int filteredCount = filteredCards.length;
+        
+        if (filteredCount == 0) {
+            String message = selectedCourse == null ? 
+                "No flashcards available." : 
+                "No flashcards available for the selected course: " + selectedCourse + "\n\nPlease select a different course or add flashcards for this topic.";
+            JOptionPane.showMessageDialog(null, message, "Flashcards", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
 
@@ -135,33 +211,92 @@ public class HirayaSTS {
 
         while (running) {
             int start = page * pageSize;
-            if (start >= flashcardCount) start = 0; // wrap
-            int end = Math.min(start + pageSize, flashcardCount);
-            int totalPages = (flashcardCount + pageSize - 1) / pageSize;
-            System.out.println("Showing " + (end - start) + " Flashcards (Page " + (page + 1) + " of " + totalPages + "):\n");
+            if (start >= filteredCount) start = 0; // wrap
+            int end = Math.min(start + pageSize, filteredCount);
+            int totalPages = (filteredCount + pageSize - 1) / pageSize;
+            
+            // Load flashcards image
+            ImageIcon flashcardsIcon = createResizedIcon("images/flashcards.png", 300, 200);
+            
+            StringBuilder sb = new StringBuilder();
+            sb.append("FLASHCARDS MODE - REVIEW\n\n");
+            if (selectedCourse != null) {
+                sb.append("Selected Course: ").append(selectedCourse).append("\n");
+            }
+            sb.append("Showing ").append(end - start).append(" Flashcards (Page ").append(page + 1).append(" of ").append(totalPages).append("):\n\n");
+            
             for (int i = start; i < end; i++) {
-                Flashcard f = flashcards[i];
-                System.out.println("[" + (i - start + 1) + "] Term: " + f.getTerm());
-                System.out.println("Definition: " + f.getDefinition() + "\n");
+                Flashcard f = filteredCards[i];
+                sb.append("[").append(i - start + 1).append("] Term: ").append(f.getTerm()).append("\n");
+                sb.append("Definition: ").append(f.getDefinition()).append("\n");
+                sb.append("Topic: ").append(f.getTopic()).append("\n\n");
             }
-            System.out.println("Options:");
-            System.out.println("1. Next Page");
-            System.out.println("2. Shuffle Flashcards");
-            System.out.println("3. Back Page");
-            System.out.println("4. Return to Main Menu");
-            System.out.print("Enter choice: ");
-            String c = scanner.nextLine().trim();
-            System.out.println();
-            switch (c) {
-                case "1": page = (page + 1) % totalPages; break;
-                case "2":
-                    shuffleFlashcards();
-                    System.out.println("Flashcards shuffled.\n");
-                    break;
-                case "3": page = (page - 1 + totalPages) % totalPages; break;
-                case "4": running = false; break;
-                default: System.out.println("Invalid choice."); break;
+            
+            sb.append("Options:\n");
+            sb.append("1. Next Page\n");
+            sb.append("2. Shuffle Flashcards\n");
+            sb.append("3. Back Page\n");
+            sb.append("4. Clear Course Filter\n");
+            sb.append("5. Return to Main Menu");
+            
+            String choice = showCustomInputDialogLeftAligned(sb.toString(), "Flashcards Mode", flashcardsIcon);
+            
+            if (choice == null) {
+                running = false;
+            } else {
+                choice = choice.trim();
+                switch (choice) {
+                    case "1": page = (page + 1) % totalPages; break;
+                    case "2":
+                        shuffleFilteredFlashcards(filteredCards);
+                        JOptionPane.showMessageDialog(null, "Flashcards shuffled.", "Flashcards", JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                    case "3": page = (page - 1 + totalPages) % totalPages; break;
+                    case "4":
+                        selectedCourse = null;
+                        JOptionPane.showMessageDialog(null, "Course filter cleared. All flashcards will now be shown.", "Filter Cleared", JOptionPane.INFORMATION_MESSAGE);
+                        return;
+                    case "5": running = false; break;
+                    default: JOptionPane.showMessageDialog(null, "Invalid choice.", "Error", JOptionPane.ERROR_MESSAGE); break;
+                }
             }
+        }
+    }
+    
+    // Method to get flashcards filtered by selected course
+    private Flashcard[] getFilteredFlashcards() {
+        if (selectedCourse == null) {
+            // No filter, return all flashcards
+            Flashcard[] result = new Flashcard[flashcardCount];
+            for (int i = 0; i < flashcardCount; i++) {
+                result[i] = flashcards[i];
+            }
+            return result;
+        } else {
+            // Filter by selected course
+            Flashcard[] temp = new Flashcard[flashcardCount];
+            int count = 0;
+            for (int i = 0; i < flashcardCount; i++) {
+                if (flashcards[i].getTopic().equalsIgnoreCase(selectedCourse)) {
+                    temp[count++] = flashcards[i];
+                }
+            }
+            // Create array with exact size
+            Flashcard[] result = new Flashcard[count];
+            for (int i = 0; i < count; i++) {
+                result[i] = temp[i];
+            }
+            return result;
+        }
+    }
+    
+    // Method to shuffle filtered flashcards
+    private void shuffleFilteredFlashcards(Flashcard[] cards) {
+        for (int i = 0; i < cards.length; i++) {
+            int j = (int) (Math.random() * cards.length);
+            Flashcard tmp = cards[i];
+            cards[i] = cards[j];
+            cards[j] = tmp;
         }
     }
 
@@ -174,8 +309,10 @@ public class HirayaSTS {
         }
     }
 
-    // ---------- Quiz generation ----------
-    // difficulty: 1=Easy (MC w/ hints), 2=Medium (MC no hints), 3=Hard (Identification)
+    // Quiz generation
+    // difficulty: 1=Easy (Multiple choice w/ hints)
+    // Difficulty 2: Medium (multiple choice no hints)
+    // Difficulty 3: Hard (Identification)
     private Quiz generateQuiz(String topic, int n, int difficulty) {
         Question[] questions = new Question[n];
         // Collect flashcards of that topic
@@ -187,21 +324,20 @@ public class HirayaSTS {
             }
         }
         if (poolCount == 0) {
-            // fallback: use all flashcards
             for (int i = 0; i < flashcardCount; i++) pool[poolCount++] = flashcards[i];
         }
-        // Build questions by sampling from pool (with wrap)
+        // Build questions by sampling from pool
         for (int i = 0; i < n; i++) {
             Flashcard source = pool[i % poolCount];
             if (difficulty == 3) {
                 // Identification
-                IdentificationQuestion iq = new IdentificationQuestion(source, difficulty, source.getDefinition());
+                IdentificationQuestion iq = new IdentificationQuestion(source, difficulty, source.getTerm());
                 questions[i] = iq;
             } else {
-                // Multiple choice - build 3 options (1 correct + up to 2 distractors)
+                // Multiple choice - build 3 options (1 correct + up to 2 wrong choices)
                 String[] options = new String[3];
                 options[0] = source.getDefinition();
-                // pick distractors
+                // pick wrong choices
                 int d = 1;
                 for (int k = 0; k < poolCount && d < 3; k++) {
                     Flashcard cand = pool[(i + k + 1) % poolCount];
@@ -209,7 +345,7 @@ public class HirayaSTS {
                         options[d++] = cand.getDefinition();
                     }
                 }
-                // if not enough distractors, fill placeholders
+                // if not enough wrong choices, fill placeholders
                 while (d < 3) {
                     options[d++] = "No further options available.";
                 }
@@ -230,561 +366,545 @@ public class HirayaSTS {
         return new Quiz(questions, topic);
     }
 
-    // ---------- Recommendations ----------
+    // Recommendations
     private void recommendLessons(Student s) {
-        System.out.println("\nRecommended Lessons (based on weak topics):");
-        String[] weak = s.getWeakTopics(40.0); // threshold 40% accuracy
+        String[] weak = s.getWeakTopics(40.0);
+        StringBuilder sb = new StringBuilder();
+        sb.append("Recommended Lessons (based on weak topics):\n\n");
+        
         if (weak.length == 0) {
-            System.out.println("Great job! No weak topics detected.");
+            sb.append("Great job! No weak topics detected.");
         } else {
             for (String t : weak) {
-                System.out.println("- " + t);
+                sb.append("- ").append(t).append("\n");
             }
         }
+        
+        ImageIcon recommendationsIcon = createResizedIcon("images/recommendations.png", 300, 200);
+        showCustomMessageDialog(sb.toString(), "Recommendations", JOptionPane.PLAIN_MESSAGE, recommendationsIcon);
     }
 
-    // ---------- Main run / login / dashboards ----------
-    public void run() {
-        System.out.println("HIRAYA SMART TUTORING SYSTEM\n");
-        System.out.println("Please log in:\n");
-        System.out.print("Enter Username: ");
-        String username = scanner.nextLine().trim();
-        System.out.print("Enter Password: ");
-        String password = scanner.nextLine().trim();
-        User u = findUserByUsername(username);
-        if (u == null || !u.login(username, password)) {
-            System.out.println("\nLogin failed. Exiting.");
-            return;
+    // Helper methods for custom dialogs with images
+    private ImageIcon createResizedIcon(String imagePath, int maxWidth, int maxHeight) {
+        try {
+            ImageIcon originalIcon = new ImageIcon(imagePath);
+            java.awt.Image img = originalIcon.getImage();
+            
+            // Calculate scaling to maintain aspect ratio
+            int originalWidth = img.getWidth(null);
+            int originalHeight = img.getHeight(null);
+            
+            double scaleX = (double) maxWidth / originalWidth;
+            double scaleY = (double) maxHeight / originalHeight;
+            double scale = Math.min(scaleX, scaleY);
+            
+            int newWidth = (int) (originalWidth * scale);
+            int newHeight = (int) (originalHeight * scale);
+            
+            java.awt.Image scaledImg = img.getScaledInstance(newWidth, newHeight, java.awt.Image.SCALE_SMOOTH);
+            return new ImageIcon(scaledImg);
+        } catch (Exception e) {
+            return null;
         }
-        System.out.println("\nLogin successful!");
-        System.out.println("Welcome, " + u.getName() + " (" + u.getRoleName() + ").");
-        System.out.println("\n————————————————————————————\n");
+    }
+    
+    private String showCustomInputDialog(String message, String title, ImageIcon icon) {
+        JPanel panel = new JPanel(new BorderLayout(10, 10));
+        
+        if (icon != null) {
+            JLabel imageLabel = new JLabel(icon);
+            imageLabel.setHorizontalAlignment(JLabel.CENTER);
+            panel.add(imageLabel, BorderLayout.NORTH);
+        }
+        
+        JLabel messageLabel = new JLabel("<html><div style='text-align: center;'>" + message.replace("\n", "<br>") + "</div></html>");
+        messageLabel.setHorizontalAlignment(JLabel.CENTER);
+        panel.add(messageLabel, BorderLayout.CENTER);
+        
+        return JOptionPane.showInputDialog(null, panel, title, JOptionPane.PLAIN_MESSAGE);
+    }
+    
+    private String showCustomInputDialogLeftAligned(String message, String title, ImageIcon icon) {
+        JPanel panel = new JPanel(new BorderLayout(10, 10));
+        
+        if (icon != null) {
+            JLabel imageLabel = new JLabel(icon);
+            imageLabel.setHorizontalAlignment(JLabel.CENTER);
+            panel.add(imageLabel, BorderLayout.NORTH);
+        }
+        
+        JLabel messageLabel = new JLabel("<html><div style='text-align: left;'>" + message.replace("\n", "<br>") + "</div></html>");
+        messageLabel.setHorizontalAlignment(JLabel.LEFT);
+        panel.add(messageLabel, BorderLayout.CENTER);
+        
+        return JOptionPane.showInputDialog(null, panel, title, JOptionPane.PLAIN_MESSAGE);
+    }
+    
+    private void showCustomMessageDialog(String message, String title, int messageType, ImageIcon icon) {
+        JPanel panel = new JPanel(new BorderLayout(10, 10));
+        
+        if (icon != null) {
+            JLabel imageLabel = new JLabel(icon);
+            imageLabel.setHorizontalAlignment(JLabel.CENTER);
+            panel.add(imageLabel, BorderLayout.NORTH);
+        }
+        
+        JLabel messageLabel = new JLabel("<html><div style='text-align: center;'>" + message.replace("\n", "<br>") + "</div></html>");
+        messageLabel.setHorizontalAlignment(JLabel.CENTER);
+        panel.add(messageLabel, BorderLayout.CENTER);
+        
+        JOptionPane.showMessageDialog(null, panel, title, JOptionPane.PLAIN_MESSAGE);
+    }
 
+    // Main run / login / dashboards
+    public void run() {
+        // Prepare login / invalid icons
+        ImageIcon loginIcon = createResizedIcon("images/main.png", 300, 200);
+        ImageIcon logoutIcon = createResizedIcon("images/logout.png", 300, 200);
+        ImageIcon invalidIcon = createResizedIcon("images/invalid-login.png", 300, 200);
+        ImageIcon successIcon = createResizedIcon("images/login-successful.png", 300, 200);
+
+        User u = null;
+
+        // Loop until successful login or user cancels
+        while (true) {
+            String username = showCustomInputDialog("Enter Username:", "Login", loginIcon);
+            if (username == null) {
+                // user cancelled
+                return;
+            }
+
+            String password = showCustomInputDialog("Enter Password:", "Login", loginIcon);
+            if (password == null) {
+                // user cancelled
+                return;
+            }
+
+            // Lookup user and verify credentials
+            User candidate = findUserByUsername(username.trim());
+            if (candidate != null && candidate.login(username.trim(), password.trim())) {
+                u = candidate;
+                // show successful login message and break out
+                showCustomMessageDialog(
+                    "Login successful!\nWelcome, " + u.getName() + " (" + u.getRoleName() + ").",
+                    "Welcome", JOptionPane.PLAIN_MESSAGE, successIcon
+                );
+                break;
+            } else {
+                // invalid credentials show message and let them try again
+                showCustomMessageDialog(
+                    "Invalid username or password. Please try again.",
+                    "Login Failed", JOptionPane.PLAIN_MESSAGE, invalidIcon
+                );
+            }
+        }
+
+        // After successful login, direct user to the correct dashboard
         if (u instanceof Student) {
             studentDashboard((Student) u);
         } else if (u instanceof Tutor) {
             tutorDashboard((Tutor) u);
         } else if (u instanceof Admin) {
             adminDashboard((Admin) u);
-        } else {
-            System.out.println("Unknown role.");
         }
-        System.out.println("\nGoodbye!");
+
+        // When they log out, show goodbye message or exit gracefully
+        showCustomMessageDialog("You have been logged out.\nGoodbye!", "Logout", JOptionPane.PLAIN_MESSAGE, logoutIcon);
     }
+
 
     // Student dashboard
     private void studentDashboard(Student s) {
-        boolean loop = true;
-        while (loop) {
-            System.out.println("STUDENT DASHBOARD\n");
-            System.out.println("1. Course Selection");
-            System.out.println("2. Flashcards Mode (Review)");
-            System.out.println("3. Practice Quiz Mode");
-            System.out.println("4. View Recommendations");
-            System.out.println("5. Logout");
-            System.out.print("\nEnter choice: ");
-            String ch = scanner.nextLine().trim();
-            System.out.println();
-            switch (ch) {
+        boolean running = true;
+        while (running) {
+            ImageIcon dashboardIcon = createResizedIcon("images/student-dashboard.png", 300, 200);
+
+            StringBuilder sb = new StringBuilder();
+            sb.append("STUDENT DASHBOARD\n\n");
+            if (selectedCourse != null) {
+                sb.append("Current Course: ").append(selectedCourse).append("\n\n");
+            } else {
+                sb.append("No course selected (showing all flashcards)\n\n");
+            }
+            sb.append("1. Course Selection\n");
+            sb.append("2. Flashcards Mode (Review)\n");
+            sb.append("3. Practice Quiz Mode\n");
+            sb.append("4. View Recommendations\n");
+            sb.append("5. Logout");
+
+            String choice = showCustomInputDialog(sb.toString(), "Student Dashboard", dashboardIcon);
+            if (choice == null) {
+                // user cancelled -> exit dashboard
+                running = false;
+                break;
+            }
+
+            switch (choice.trim()) {
                 case "1":
                     courseSelection();
                     break;
                 case "2":
+                    // existing method name in your code
                     flashcardsMode();
                     break;
                 case "3":
+                    // existing method name in your code (accepts Student)
                     practiceQuizMode(s);
                     break;
                 case "4":
+                    // existing method name in your code (accepts Student)
                     recommendLessons(s);
                     break;
-                case "5": loop = false; break;
-                default: System.out.println("Invalid choice."); break;
+                case "5":
+                    running = false; // logout
+                    break;
+                default:
+                    ImageIcon invalidIcon = createResizedIcon("images/invalid-choice.png", 300, 200);
+                    showCustomMessageDialog("Invalid choice. Please try again.", "Error", JOptionPane.PLAIN_MESSAGE, invalidIcon);
+                    break;
             }
-            System.out.println("\n————————————————————————————\n");
         }
     }
+
 
     private void courseSelection() {
-        System.out.println("COURSE SELECTION\n");
-        System.out.println("Available Courses:");
+        // Load course selection image
+        ImageIcon courseSelectionIcon = createResizedIcon("images/course-selection.png", 300, 200);
+        
+        StringBuilder sb = new StringBuilder();
+        sb.append("COURSE SELECTION\n\n");
+        sb.append("Available Courses:\n");
         for (int i = 0; i < AVAILABLE_COURSES.length; i++) {
-            System.out.println((i + 1) + ". \u200B\u200B\u200B\u200B" + AVAILABLE_COURSES[i]);
+            sb.append((i + 1)).append(". ").append(AVAILABLE_COURSES[i]).append("\n");
         }
-        System.out.print("Enter the number of the course you want to study: ");
-        String sel = scanner.nextLine().trim();
-        try {
-            int idx = Integer.parseInt(sel) - 1;
-            if (idx >= 0 && idx < AVAILABLE_COURSES.length) {
-                System.out.println("You have selected: " + AVAILABLE_COURSES[idx]);
-            } else {
-                System.out.println("Invalid selection.");
+        sb.append("\nEnter the number of the course you want to study:");
+        
+        String selection = showCustomInputDialog(sb.toString(), "Course Selection", courseSelectionIcon);
+        
+        if (selection != null) {
+            try {
+                int idx = Integer.parseInt(selection.trim()) - 1;
+                if (idx >= 0 && idx < AVAILABLE_COURSES.length) {
+                    selectedCourse = AVAILABLE_COURSES[idx];
+                    
+                    // Show appropriate course selected image
+                    ImageIcon selectedIcon = null;
+                    switch (idx) {
+                        // Computer Science Fundamentals
+                        case 0: 
+                            selectedIcon = createResizedIcon("images/course-selected-computersciencefundamentals.png", 300, 200);
+                            break;
+                        // Cybersecurity Basics
+                        case 1: 
+                            selectedIcon = createResizedIcon("images/course-selected-cybersecurity.png", 300, 200);
+                            break;
+                         // Object-Oriented Programming
+                        case 2:
+                            selectedIcon = createResizedIcon("images/course-selected-oop.png", 300, 200);
+                            break;
+                         // Data Structures and Algorithms
+                        case 3:
+                            selectedIcon = createResizedIcon("images/course-selected-dsal.png", 300, 200);
+                            break;
+                    }
+                    
+                    showCustomMessageDialog("You have selected: " + AVAILABLE_COURSES[idx] + "\n\nFlashcards will now be filtered to this course.", "Course Selected", JOptionPane.PLAIN_MESSAGE, selectedIcon);
+                } else {
+                    ImageIcon invalidIcon = createResizedIcon("images/invalid-choice.png", 300, 200);
+                    showCustomMessageDialog("Invalid selection.", "Error", JOptionPane.PLAIN_MESSAGE, invalidIcon);
+                }
+            } catch (NumberFormatException e) {
+                ImageIcon invalidIcon = createResizedIcon("images/invalid-choice.png", 300, 200);
+                showCustomMessageDialog("Invalid input.", "Error", JOptionPane.PLAIN_MESSAGE, invalidIcon);
             }
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid input.");
         }
     }
 
-    // Practice quiz mode menu (student)
+    // Practice quiz mode menu for students
     private void practiceQuizMode(Student s) {
-        System.out.println("PRACTICE QUIZ MODE\n");
-        System.out.println("Select Difficulty Level:");
-        System.out.println("1. Easy (Multiple Choice with Hints)");
-        System.out.println("2. Medium (Multiple Choice without Hints)");
-        System.out.println("3. Hard (Identification with Progressive Hints)");
-        System.out.print("\nEnter choice: ");
-        String ch = scanner.nextLine().trim();
+        // Load practice quiz image
+        ImageIcon practiceQuizIcon = createResizedIcon("images/practice-quiz.png", 300, 200);
+        
+        StringBuilder sb = new StringBuilder();
+        sb.append("PRACTICE QUIZ MODE\n\n");
+        sb.append("Select Difficulty Level:\n");
+        sb.append("1. Easy (Multiple Choice with Hints)\n");
+        sb.append("2. Medium (Multiple Choice without Hints)\n");
+        sb.append("3. Hard (Identification with Progressive Hints)");
+        
+        String choice = showCustomInputDialog(sb.toString(), "Practice Quiz Mode", practiceQuizIcon);
+        if (choice == null) return; // User cancelled
+        
         int diff = 1;
-        if (ch.equals("1")) diff = 1;
-        else if (ch.equals("2")) diff = 2;
-        else if (ch.equals("3")) diff = 3;
+        if (choice.equals("1")) diff = 1;
+        else if (choice.equals("2")) diff = 2;
+        else if (choice.equals("3")) diff = 3;
         else {
-            System.out.println("Invalid choice. Defaulting to Easy.");
+            ImageIcon invalidIcon = createResizedIcon("images/invalid-choice.png", 300, 200);
+            showCustomMessageDialog("Invalid choice. Defaulting to Easy.", "Warning", JOptionPane.PLAIN_MESSAGE, invalidIcon);
         }
-        System.out.println("\nAvailable Topics:");
+        
+        sb = new StringBuilder();
+        sb.append("Available Topics:\n");
         for (int i = 0; i < TOPICS.length; i++) {
-            System.out.println((i + 1) + ". " + TOPICS[i]);
+            sb.append((i + 1)).append(". ").append(TOPICS[i]).append("\n");
         }
-        System.out.print("Enter the number of the topic: ");
-        String tsel = scanner.nextLine().trim();
+        sb.append("\nEnter the number of the topic:");
+        
+        String topicChoice = showCustomInputDialog(sb.toString(), "Topic Selection", practiceQuizIcon);
+        if (topicChoice == null) return; // User cancelled
+        
         int tidx = 0;
         try {
-            tidx = Integer.parseInt(tsel) - 1;
+            tidx = Integer.parseInt(topicChoice.trim()) - 1;
             if (tidx < 0 || tidx >= TOPICS.length) tidx = 0;
         } catch (NumberFormatException e) {
             tidx = 0;
         }
         String topic = TOPICS[tidx];
-        System.out.print("Enter number of questions (e.g., 3): ");
+        
+        String numQuestionsStr = showCustomInputDialog("Enter number of questions (e.g., 3):", "Number of Questions", practiceQuizIcon);
+        if (numQuestionsStr == null) return; // User cancelled
+        
         int n = 3;
         try {
-            n = Integer.parseInt(scanner.nextLine().trim());
+            n = Integer.parseInt(numQuestionsStr.trim());
             if (n <= 0) n = 3;
         } catch (Exception e) { n = 3; }
-        System.out.println("\nStarting Quiz... Good luck!\n");
+        
+        showCustomMessageDialog("Starting Quiz... Good luck!", "Quiz Starting", JOptionPane.PLAIN_MESSAGE, practiceQuizIcon);
         Quiz quiz = generateQuiz(topic, n, diff);
-        quiz.administer(s, scanner);
+        quiz.administer(s);
     }
 
     // Tutor dashboard
-    private void tutorDashboard(Tutor t) {
-        System.out.println("TUTOR DASHBOARD\n");
-        System.out.println("Welcome, " + t.getName() + " (Tutor)\n");
-        boolean run = true;
-        while (run) {
-            System.out.println("Options:");
-            System.out.println("1. Create Flashcard");
-            System.out.println("2. Edit Flashcard");
-            System.out.println("3. Delete Flashcard");
-            System.out.println("4. Review Flashcards");
-            System.out.println("5. Logout");
-            System.out.print("\nEnter choice: ");
-            String c = scanner.nextLine().trim();
-            System.out.println();
-            switch (c) {
-                case "1":
-                    System.out.println("--- CREATE FLASHCARD ---");
-                    System.out.print("Enter Term: ");
-                    String term = scanner.nextLine().trim();
-                    System.out.print("Enter Definition: ");
-                    String definition = scanner.nextLine().trim();
-                    System.out.print("Enter Topic: ");
-                    String topic = scanner.nextLine().trim();
-                    Flashcard nf = t.createFlashcard(term, definition, topic);
-                    addFlashcard(nf);
-                    System.out.println("\nFlashcard successfully added under " + topic + "!");
-                    break;
-                case "2":
-                    editFlashcard();
-                    break;
-                case "3":
-                    deleteFlashcard();
-                    break;
-                case "4":
-                    flashcardsMode();
-                    break;
-                case "5": run = false; break;
-                default: System.out.println("Invalid choice."); break;
-            }
-            System.out.println("\n—————————————————————————————————\n");
+private void tutorDashboard(Tutor t) {
+    boolean running = true;
+    while (running) {
+        ImageIcon tutorIcon = createResizedIcon("images/tutor-dashboard.png", 300, 200);
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("TUTOR DASHBOARD\n\nWelcome, ").append(t.getName()).append(" (Tutor)\n\n");
+        sb.append("Options:\n");
+        sb.append("1. Create Flashcard\n");
+        sb.append("2. Edit Flashcard\n");
+        sb.append("3. Delete Flashcard\n");
+        sb.append("4. Review Flashcards\n");
+        sb.append("5. Logout");
+
+        String choice = showCustomInputDialog(sb.toString(), "Tutor Dashboard", tutorIcon);
+        if (choice == null) {
+            running = false;
+            break;
+        }
+
+        switch (choice.trim()) {
+            case "1":
+                addFlashcard(null);
+                break;
+            case "2":
+                editFlashcard(); // exists
+                break;
+            case "3":
+                deleteFlashcard(); // exists (paginated)
+                break;
+            case "4":
+                flashcardsMode(); // review mode
+                break;
+            case "5":
+                running = false;
+                break;
+            default:
+                ImageIcon invalidIcon = createResizedIcon("images/invalid-choice.png", 300, 200);
+                showCustomMessageDialog("Invalid choice. Please try again.", "Error", JOptionPane.PLAIN_MESSAGE, invalidIcon);
+                break;
         }
     }
-
+}
+    
+    // Allows the tutor to edit the contents of the flashcards
     private void editFlashcard() {
-        if (flashcardCount == 0) { System.out.println("No flashcards to edit."); return; }
-        System.out.println("Edit which flashcard? (enter index)");
-        for (int i = 0; i < flashcardCount; i++) {
-            System.out.println((i + 1) + ". " + flashcards[i].getTerm() + " (" + flashcards[i].getTopic() + ")");
+        if (flashcardCount == 0) { 
+            JOptionPane.showMessageDialog(null, "No flashcards to edit.", "Error", JOptionPane.ERROR_MESSAGE); 
+            return; 
         }
-        System.out.print("Choice: ");
-        try {
-            int idx = Integer.parseInt(scanner.nextLine().trim()) - 1;
-            if (idx < 0 || idx >= flashcardCount) { System.out.println("Invalid index."); return; }
-            System.out.print("Enter new Term (leave blank to keep): ");
-            String term = scanner.nextLine();
-            System.out.print("Enter new Definition (leave blank to keep): ");
-            String def = scanner.nextLine();
-            System.out.print("Enter new Topic (leave blank to keep): ");
-            String topic = scanner.nextLine();
-            if (!term.trim().equals("")) flashcards[idx].setTerm(term.trim());
-            if (!def.trim().equals("")) flashcards[idx].setDefinition(def.trim());
-            if (!topic.trim().equals("")) flashcards[idx].setTopic(topic.trim());
-            System.out.println("Flashcard updated.");
-        } catch (Exception e) { System.out.println("Invalid input."); }
+        
+        int pageSize = 10;
+        int page = 0;
+        int totalPages = (flashcardCount + pageSize - 1) / pageSize;
+        boolean selecting = true;
+        
+        while (selecting) {
+            int start = page * pageSize;
+            int end = Math.min(start + pageSize, flashcardCount);
+            
+            // Asks the Tutor which flashcard to edit
+            StringBuilder sb = new StringBuilder();
+            sb.append("Edit which flashcard? (Page ").append(page + 1).append(" of ").append(totalPages).append(")\n\n");
+            
+            for (int i = start; i < end; i++) {
+                sb.append((i + 1)).append(". ").append(flashcards[i].getTerm()).append(" (").append(flashcards[i].getTopic()).append(")\n");
+            }
+            
+            sb.append("\nEnter flashcard number to edit, 'N' for next page, 'P' for previous page, or 'C' to cancel:");
+            
+            String choice = JOptionPane.showInputDialog(null, sb.toString(), "Edit Flashcard", JOptionPane.QUESTION_MESSAGE);
+            if (choice == null || choice.trim().equalsIgnoreCase("C")) return;
+            
+            choice = choice.trim();
+            
+            if (choice.equalsIgnoreCase("N")) {
+                page = (page + 1) % totalPages;
+                continue;
+            } else if (choice.equalsIgnoreCase("P")) {
+                page = (page - 1 + totalPages) % totalPages;
+                continue;
+            }
+            
+            try {
+                int idx = Integer.parseInt(choice) - 1;
+                if (idx < 0 || idx >= flashcardCount) { 
+                    JOptionPane.showMessageDialog(null, "Invalid index.", "Error", JOptionPane.ERROR_MESSAGE); 
+                    continue;
+                }
+                
+                // Term name change
+                String term = JOptionPane.showInputDialog(null, "Enter new Term (leave blank to keep current: \"" + flashcards[idx].getTerm() + "\"):", "Edit Flashcard", JOptionPane.QUESTION_MESSAGE);
+                if (term == null) return;
+                
+                // Definition change
+                String def = JOptionPane.showInputDialog(null, "Enter new Definition (leave blank to keep current):", "Edit Flashcard", JOptionPane.QUESTION_MESSAGE);
+                if (def == null) return;
+                
+                // Topic change
+                String topic = JOptionPane.showInputDialog(null, "Enter new Topic (leave blank to keep current: \"" + flashcards[idx].getTopic() + "\"):", "Edit Flashcard", JOptionPane.QUESTION_MESSAGE);
+                if (topic == null) return;
+                
+                if (!term.trim().equals("")) flashcards[idx].setTerm(term.trim());
+                if (!def.trim().equals("")) flashcards[idx].setDefinition(def.trim());
+                if (!topic.trim().equals("")) flashcards[idx].setTopic(topic.trim());
+                JOptionPane.showMessageDialog(null, "Flashcard updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                selecting = false;
+            } catch (Exception e) { 
+                JOptionPane.showMessageDialog(null, "Invalid input.", "Error", JOptionPane.ERROR_MESSAGE); 
+            }
+        }
     }
 
+    // Allows the user to delete a flashcard
     private void deleteFlashcard() {
-        if (flashcardCount == 0) { System.out.println("No flashcards to delete."); return; }
-        System.out.println("Delete which flashcard? (enter index)");
-        for (int i = 0; i < flashcardCount; i++) {
-            System.out.println((i + 1) + ". " + flashcards[i].getTerm() + " (" + flashcards[i].getTopic() + ")");
-        }
-        System.out.print("Choice: ");
-        try {
-            int idx = Integer.parseInt(scanner.nextLine().trim()) - 1;
-            if (idx < 0 || idx >= flashcardCount) { System.out.println("Invalid index."); return; }
-            // shift left
-            for (int i = idx; i < flashcardCount - 1; i++) flashcards[i] = flashcards[i + 1];
-            flashcards[--flashcardCount] = null;
-            System.out.println("Flashcard deleted.");
-        } catch (Exception e) { System.out.println("Invalid input."); }
+    if (flashcardCount == 0) { 
+        JOptionPane.showMessageDialog(null, "No flashcards to delete.", "Error", JOptionPane.ERROR_MESSAGE); 
+        return; 
     }
+
+    int pageSize = 10;
+    int page = 0;
+    int totalPages = (flashcardCount + pageSize - 1) / pageSize;
+    boolean selecting = true;
+
+    while (selecting) {
+        int start = page * pageSize;
+        int end = Math.min(start + pageSize, flashcardCount);
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("Delete which flashcard? (Page ").append(page + 1).append(" of ").append(totalPages).append(")\n\n");
+
+        for (int i = start; i < end; i++) {
+            sb.append((i + 1)).append(". ")
+              .append(flashcards[i].getTerm())
+              .append(" (").append(flashcards[i].getTopic()).append(")\n");
+        }
+
+         // Asks the user to choose which flashcard to delete
+        sb.append("\nEnter flashcard number to delete, 'N' for next page, 'P' for previous page, or 'C' to cancel:");
+
+        String choice = JOptionPane.showInputDialog(null, sb.toString(), "Delete Flashcard", JOptionPane.QUESTION_MESSAGE);
+        if (choice == null || choice.trim().equalsIgnoreCase("C")) return;
+
+        choice = choice.trim();
+
+        if (choice.equalsIgnoreCase("N")) {
+            page = (page + 1) % totalPages;
+            continue;
+        } else if (choice.equalsIgnoreCase("P")) {
+            page = (page - 1 + totalPages) % totalPages;
+            continue;
+        }
+
+        try {
+            int idx = Integer.parseInt(choice) - 1;
+            if (idx < 0 || idx >= flashcardCount) { 
+                JOptionPane.showMessageDialog(null, "Invalid index.", "Error", JOptionPane.ERROR_MESSAGE); 
+                continue; 
+            }
+
+            int confirm = JOptionPane.showConfirmDialog(
+                null,
+                "Are you sure you want to delete this flashcard?\n\n" +
+                "Term: " + flashcards[idx].getTerm() +
+                "\nTopic: " + flashcards[idx].getTopic(),
+                "Confirm Delete",
+                JOptionPane.YES_NO_OPTION
+            );
+
+            if (confirm == JOptionPane.YES_OPTION) {
+                // Shift left
+                for (int i = idx; i < flashcardCount - 1; i++) flashcards[i] = flashcards[i + 1];
+                flashcards[--flashcardCount] = null;
+                JOptionPane.showMessageDialog(null, "Flashcard deleted.", "Success", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+            selecting = false;
+        } catch (NumberFormatException e) { 
+            JOptionPane.showMessageDialog(null, "Invalid input.", "Error", JOptionPane.ERROR_MESSAGE); 
+        }
+    }
+}
+
 
     // Admin dashboard
     private void adminDashboard(Admin a) {
-        System.out.println("ADMIN DASHBOARD\n");
         boolean run = true;
         while (run) {
-            System.out.println("Options:");
-            System.out.println("1. Backup Data");
-            System.out.println("2. View Users");
-            System.out.println("3. Logout");
-            System.out.print("\nEnter choice: ");
-            String c = scanner.nextLine().trim();
-            System.out.println();
-            switch (c) {
-                case "1":
-                    a.backupData();
-                    break;
-                case "2":
-                    System.out.println("Users:");
-                    for (int i = 0; i < userCount; i++) {
-                        System.out.println("- " + users[i].getName() + " (" + users[i].getRoleName() + ")");
-                    }
-                    break;
-                case "3": run = false; break;
-                default: System.out.println("Invalid choice."); break;
+            // Load admin dashboard image
+            ImageIcon adminDashboardIcon = createResizedIcon("images/admin-dashboard.png", 300, 200);
+            
+            StringBuilder sb = new StringBuilder();
+            sb.append("ADMIN DASHBOARD\n\n");
+            sb.append("Options:\n");
+            sb.append("1. Backup Data\n");
+            sb.append("2. View Users\n");
+            sb.append("3. Logout");
+            
+            String choice = showCustomInputDialog(sb.toString(), "Admin Dashboard", adminDashboardIcon);
+            
+            if (choice == null) {
+                run = false;
+            } else {
+                choice = choice.trim();
+                switch (choice) {
+                    case "1":
+                        a.backupData();
+                        break;
+                    case "2":
+                        StringBuilder userList = new StringBuilder();
+                        userList.append("Users:\n\n");
+                        for (int i = 0; i < userCount; i++) {
+                            userList.append("- ").append(users[i].getName()).append(" (").append(users[i].getRoleName()).append(")\n");
+                        }
+                        JOptionPane.showMessageDialog(null, userList.toString(), "Users List", JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                    case "3": run = false; break;
+                    default: JOptionPane.showMessageDialog(null, "Invalid choice.", "Error", JOptionPane.ERROR_MESSAGE); break;
+                }
             }
-            System.out.println("\n————————————————————————————\n");
         }
     }
 
-    // ---------- Main ----------
+    // Main
     public static void main(String[] args) {
         HirayaSTS app = new HirayaSTS();
         app.run();
-    }
-}
-
-/* ------------------------------
-   User and subclasses
-   ------------------------------ */
-class User {
-    protected int id;
-    protected String name;
-    protected String username;
-    protected String password;
-
-    public User(int id, String name, String username, String password) {
-        this.id = id; this.name = name; this.username = username; this.password = password;
-    }
-    public int getId() { return id; }
-    public String getName() { return name; }
-    public String getUsername() { return username; }
-    public boolean login(String username, String password) {
-        return this.username.equals(username) && this.password.equals(password);
-    }
-    public String getRoleName() { return "User"; }
-}
-
-class Student extends User {
-    private String email;
-    private String course;
-    private String dateOfBirth;
-
-    // For performance tracking: parallel arrays keyed by TOPICS in main app.
-    // We'll store pairs as two arrays with topic names. To be simple, we'll collect counts per topic string.
-    private String[] trackedTopics;
-    private int[] attempts;
-    private int[] correct;
-
-    public Student(int id, String name, String username, String password, String email, String course, String dateOfBirth) {
-        super(id, name, username, password);
-        this.email = email; this.course = course; this.dateOfBirth = dateOfBirth;
-        // initialize tracking with a default list of topics
-        this.trackedTopics = new String[] { "Object-Oriented Programming", "Cybersecurity Basics", "Computer Science Fundamentals", "Data Structures and Algorithms" };
-        this.attempts = new int[trackedTopics.length];
-        this.correct = new int[trackedTopics.length];
-        for (int i = 0; i < trackedTopics.length; i++) { attempts[i] = 0; correct[i] = 0; }
-    }
-
-    @Override
-    public String getRoleName() { return "Student"; }
-
-    // record result by topic name (increment attempts and correct if true)
-    public void recordResult(String topic, boolean isCorrect) {
-        int idx = indexOfTopic(topic);
-        if (idx == -1) {
-            // expand arrays to include this topic
-            int old = trackedTopics.length;
-            String[] nt = new String[old + 1];
-            int[] na = new int[old + 1];
-            int[] nc = new int[old + 1];
-            for (int i = 0; i < old; i++) { nt[i] = trackedTopics[i]; na[i] = attempts[i]; nc[i] = correct[i]; }
-            nt[old] = topic; na[old] = 0; nc[old] = 0;
-            trackedTopics = nt; attempts = na; correct = nc;
-            idx = old;
-        }
-        attempts[idx]++;
-        if (isCorrect) correct[idx]++;
-    }
-
-    private int indexOfTopic(String topic) {
-        for (int i = 0; i < trackedTopics.length; i++) if (trackedTopics[i].equalsIgnoreCase(topic)) return i;
-        return -1;
-    }
-
-    // accuracy for a topic in percent
-    public double accuracy(String topic) {
-        int idx = indexOfTopic(topic);
-        if (idx == -1 || attempts[idx] == 0) return 100.0;
-        return ((double) correct[idx] / (double) attempts[idx]) * 100.0;
-    }
-
-    // return weak topics below threshold (percent)
-    public String[] getWeakTopics(double threshold) {
-        int count = 0;
-        for (int i = 0; i < trackedTopics.length; i++) {
-            double acc = (attempts[i] == 0) ? 100.0 : ((double) correct[i] / attempts[i]) * 100.0;
-            if (acc < threshold) count++;
-        }
-        String[] res = new String[count];
-        int k = 0;
-        for (int i = 0; i < trackedTopics.length; i++) {
-            double acc = (attempts[i] == 0) ? 100.0 : ((double) correct[i] / attempts[i]) * 100.0;
-            if (acc < threshold) res[k++] = trackedTopics[i] + " (" + String.format("%.0f", acc) + "%)";
-        }
-        return res;
-    }
-}
-
-class Tutor extends User {
-    private String expertise;
-    public Tutor(int id, String name, String username, String password, String expertise) {
-        super(id, name, username, password); this.expertise = expertise;
-    }
-    @Override
-    public String getRoleName() { return "Tutor"; }
-
-    public Flashcard createFlashcard(String term, String def, String topic) {
-        return new Flashcard(term, def, topic);
-    }
-}
-
-class Admin extends User {
-    private String adminLevel;
-    public Admin(int id, String name, String username, String password, String adminLevel) {
-        super(id, name, username, password); this.adminLevel = adminLevel;
-    }
-    @Override
-    public String getRoleName() { return "Admin"; }
-
-    public void backupData() {
-        System.out.println("Backing up data... (simulated)");
-        System.out.println("Backup complete.");
-    }
-}
-
-/* ------------------------------
-   Flashcard
-   ------------------------------ */
-class Flashcard {
-    private String term;
-    private String definition;
-    private String topic;
-
-    public Flashcard(String term, String definition, String topic) {
-        this.term = term; this.definition = definition; this.topic = topic;
-    }
-    public String getTerm() { return term; }
-    public String getDefinition() { return definition; }
-    public String getTopic() { return topic; }
-    public void setTerm(String t) { this.term = t; }
-    public void setDefinition(String d) { this.definition = d; }
-    public void setTopic(String t) { this.topic = t; }
-    public void show() {
-        System.out.println("Term: " + term);
-        System.out.println("Definition: " + definition);
-    }
-}
-
-/* ------------------------------
-   Question (abstract) and subclasses
-   ------------------------------ */
-abstract class Question {
-    protected Flashcard source;
-    protected int difficulty;
-    public Question(Flashcard source, int difficulty) {
-        this.source = source; this.difficulty = difficulty;
-    }
-    public abstract void ask();
-    // evaluate given string input; return true if correct
-    public abstract boolean evaluate(String answer);
-}
-
-class MultipleChoiceQuestion extends Question {
-    private String[] options;
-    private int correctIndex;
-
-    public MultipleChoiceQuestion(Flashcard source, int difficulty, String[] options, int correctIndex) {
-        super(source, difficulty);
-        this.options = options;
-        this.correctIndex = correctIndex;
-    }
-
-    @Override
-    public void ask() {
-        System.out.println("Multiple Choice:");
-        System.out.println("Term: " + source.getTerm());
-        System.out.println("Choose the correct definition:");
-        for (int i = 0; i < options.length; i++) {
-            System.out.println((i + 1) + ". " + options[i]);
-        }
-    }
-
-    @Override
-    public boolean evaluate(String answer) {
-        try {
-            int sel = Integer.parseInt(answer.trim()) - 1;
-            return sel == correctIndex;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    // hints (only for easy)
-    public void showHint() {
-        String def = source.getDefinition();
-        if (def.length() > 30) def = def.substring(0, 30) + "...";
-        System.out.println("Hint: Definition starts with \"" + def + "\"");
-    }
-
-    public String[] getOptions() {
-    return options;
-}
-
-}
-
-class IdentificationQuestion extends Question {
-    private String expected;
-    private int attempts;
-
-    public IdentificationQuestion(Flashcard source, int difficulty, String expected) {
-        super(source, difficulty);
-        this.expected = expected;
-        this.attempts = 0;
-    }
-
-    @Override
-    public void ask() {
-        System.out.println("Fill in the blank:\n");
-        System.out.println(source.getDefinition());
-        System.out.print("Enter your answer: ");
-    }
-
-    @Override
-    public boolean evaluate(String answer) {
-        attempts++;
-        return expected.trim().equalsIgnoreCase(answer.trim());
-    }
-
-    public String getHint() {
-        // progressive hint based on attempts
-        if (attempts == 0) return "Hint: " + expected.charAt(0);
-        else if (attempts == 1) {
-            int len = Math.min(3, expected.length());
-            return "Hint: " + expected.substring(0, len);
-        } else {
-            return "Hint: The answer starts with \"" + expected.substring(0, Math.min(5, expected.length())) + "\"";
-        }
-    }
-
-    public String getExpected() {
-    return expected;
-    }
-}
-
-/* ------------------------------
-   Quiz class
-   ------------------------------ */
-class Quiz {
-    private Question[] questions;
-    private int score;
-    private String topic;
-
-    public Quiz(Question[] questions, String topic) {
-        this.questions = questions; this.topic = topic; this.score = 0;
-    }
-
-    public void administer(Student s, Scanner scanner) {
-        for (int i = 0; i < questions.length; i++) {
-            Question q = questions[i];
-            System.out.println("Question " + (i + 1) + ":\n");
-            q.ask();
-            if (q instanceof MultipleChoiceQuestion) {
-                MultipleChoiceQuestion mc = (MultipleChoiceQuestion) q;
-                // If difficulty is 1 (Easy), show hint before answer
-                if (mc.difficulty == 1) {
-                    mc.showHint();
-                }
-                System.out.print("\nEnter your choice (1-" + mc.getOptions().length + "): ");
-                String ans = scanner.nextLine().trim();
-                boolean correct = mc.evaluate(ans);
-                if (correct) {
-                    System.out.println("\nCorrect!");
-                    score++;
-                    s.recordResult(topic, true);
-                } else {
-                    System.out.println("\nIncorrect!");
-                    s.recordResult(topic, false);
-                }
-            } else if (q instanceof IdentificationQuestion) {
-                IdentificationQuestion iq = (IdentificationQuestion) q;
-                boolean correct = false;
-                int tries = 0;
-                while (!correct && tries < 3) {
-                    System.out.print("\nEnter your answer: ");
-                    String ans = scanner.nextLine().trim();
-                    correct = iq.evaluate(ans);
-                    if (correct) {
-                        System.out.println("\nCorrect!");
-                        score++;
-                        s.recordResult(topic, true);
-                    } else {
-                        System.out.println("\nIncorrect! Try again.");
-                        System.out.println(iq.getHint());
-                        tries++;
-                        s.recordResult(topic, false);
-                    }
-                }
-                if (!correct) {
-                    System.out.println("\nThe correct answer was: " + iq.getExpected());
-                }
-            } else {
-                System.out.println("Unsupported question type.");
-            }
-            System.out.println("\n--------------------------------\n");
-        }
-        System.out.println("Quiz complete! Score: " + score + " out of " + questions.length);
     }
 }
