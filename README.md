@@ -4,7 +4,7 @@
 ![OOP](https://img.shields.io/badge/OOP-Principles-blue?style=for-the-badge)
 ![Swing](https://img.shields.io/badge/Swing-GUI-orange?style=for-the-badge)
 
-A comprehensive Java-based educational platform featuring flashcard management, adaptive quizzing, and personalized learning recommendations. Built with Object-Oriented Programming principles for the 2090-6OOP (NW-201) course.
+A comprehensive Java-based educational platform featuring flashcard management, adaptive quizzing, and personalized learning recommendations. Built with Object-Oriented Programming principles for the 2090-6OOP (NW-201) course at Holy Angel University.
 
 ## 🎯 Overview
 
